@@ -29,7 +29,7 @@ class Cell(QPushButton):
                 self.setStyleSheet("background-color: #ddd")
                 self.parent.reveal_neighbours(self.x, self.y)
         self.setEnabled(False)
-        
+
 class Minesweeper(QWidget):
     def __init__(self):
         super().__init__()
@@ -40,3 +40,10 @@ class Minesweeper(QWidget):
         self.setLayout(self.grid)
         self.init_board()
 
+    def init_board(self):
+        self.cells = [[Cell(x, y, self) for y in range(self.size)] for x in range(self.size)] # двумерный список клеток
+        for x in range(self.size):
+            for y in range(self.size):
+                self.grid.addWidget(self.cells[x][y], x, y)
+        self.place_mines()
+        
