@@ -12,3 +12,20 @@ class Cell(QPushButton):
         self.revealed = False
         self.setFixedSize(100,100)
         self.clicked.connect(self.reveal)
+
+    def reveal(self):
+        if self.revealed:
+            return
+        self.revealed = True
+        if self.is_mine:
+            self.setText("💣")
+            self.setStyleSheet("background-color: red")
+            self.parent.game_over(False)
+        else:
+            count = self.parent.count_mines(self.x, self.y)
+            if count:
+                self.setText(str(count))
+            else:
+                self.setStyleSheet("background-color: #ddd")
+                self.parent.reveal_neighbours(self.x, self.y)
+        self.setEnabled(False)
