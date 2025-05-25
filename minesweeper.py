@@ -68,3 +68,14 @@ class Minesweeper(QWidget):
                 cell = self.cells[i][j]
                 if not cell.revealed and not cell.is_mine:
                     cell.reveal()
+
+    def game_over(self, win):
+        for row in self.cells:
+            for cell in row:
+                if cell.is_mine:
+                    cell.setText("💣")
+        msg = QMessageBox()
+        msg.setText("Победа!" if win else "Вы проиграли!")
+        msg.exec_()
+        self.close()
+        
