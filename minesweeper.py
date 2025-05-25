@@ -46,4 +46,12 @@ class Minesweeper(QWidget):
             for y in range(self.size):
                 self.grid.addWidget(self.cells[x][y], x, y)
         self.place_mines()
-        
+    
+    def place_mines(self):
+        position = random.sample(range(self.size * self.size), self.mines)
+        for pos in position:
+            x = pos // self.size
+            y = pos % self.size
+            self.cells[x][y].is_mine = True
+    
+    
