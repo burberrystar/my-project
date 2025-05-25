@@ -78,4 +78,10 @@ class Minesweeper(QWidget):
         msg.setText("Победа!" if win else "Вы проиграли!")
         msg.exec_()
         self.close()
-        
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    game = Minesweeper()
+    game.show()
+    sys.exit(app.exec_())
+
