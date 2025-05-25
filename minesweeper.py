@@ -54,4 +54,12 @@ class Minesweeper(QWidget):
             y = pos % self.size
             self.cells[x][y].is_mine = True
     
+    def count_mines(self, x, y):
+        count = 0
+        for i in range(max(0, x-1), min(self.size, x+2)):
+            for j in range(max(0, y-1), min(self.size, y+2)):
+                if self.cells[i][j].is_mine:
+                    count += 1
+        return count
+    
     
