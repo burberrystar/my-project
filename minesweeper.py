@@ -62,4 +62,9 @@ class Minesweeper(QWidget):
                     count += 1
         return count
     
-    
+    def reveal_neighbours(self, x, y):
+        for i in range(max(0, x-1), min(self.size, x+2)):
+            for j in range(max(0, y-1), min(self.size, y+2)):
+                cell = self.cells[i][j]
+                if not cell.revealed and not cell.is_mine:
+                    cell.reveal()
