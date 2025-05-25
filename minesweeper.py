@@ -29,3 +29,14 @@ class Cell(QPushButton):
                 self.setStyleSheet("background-color: #ddd")
                 self.parent.reveal_neighbours(self.x, self.y)
         self.setEnabled(False)
+        
+class Minesweeper(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Сапер")
+        self.size = 5 
+        self.mines = 3
+        self.grid = QGridLayout()
+        self.setLayout(self.grid)
+        self.init_board()
+
